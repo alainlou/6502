@@ -1,13 +1,13 @@
 module alu
 (
     input clk,
-    input [7:0] reg_a,
-    input [7:0] reg_b,
+    input signed [7:0] reg_a,
+    input signed [7:0] reg_b,
     input [4:0] op,
     input carry_in,
     input decimal_mode, // BCD mode, ignored for now
-    output reg [7:0] hold_reg,
-    output reg overflow,
+    output reg signed [7:0] hold_reg,
+    output reg overflow, // despite the name, asserted for underflow as well
     output reg carry_out,
     output reg half_carry // only used in BCD, ignored for now
 );
@@ -19,6 +19,7 @@ module alu
         case (op)
             SUM : begin
                 {carry_out, hold_reg} = reg_a + reg_b;
+                overflow = (hold_reg[7] && !reg_a[7] && !reg_b[7]) || (!hold_reg[7] && reg_a[7] && reg_b[7]);
             end
             AND: hold_reg = reg_a & reg_b;
             OR: hold_reg = reg_a | reg_b;
