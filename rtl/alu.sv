@@ -24,7 +24,7 @@ module alu
             AND: hold_reg = reg_a & reg_b;
             OR: hold_reg = reg_a | reg_b;
             EOR: hold_reg = reg_a ^ reg_b;
-            SR: hold_reg = reg_a << 1;
+            SR: hold_reg = reg_a >> 1;
             // default: // fall through
         endcase
     end
