@@ -12,7 +12,7 @@ module alu
     output reg half_carry // only used in BCD, ignored for now
 );
 
-    // 6502 ALU uses 1-hot encoding
+    // 6502 opcodes use 1-hot encoding
     localparam SUM=5'b10000, AND=5'b01000, OR=5'b00100, EOR=5'b00010, SR=5'b00001;
 
     always_comb begin
@@ -25,7 +25,6 @@ module alu
             OR: hold_reg = reg_a | reg_b;
             EOR: hold_reg = reg_a ^ reg_b;
             SR: hold_reg = reg_a >> 1;
-            // default: // fall through
         endcase
     end
 
