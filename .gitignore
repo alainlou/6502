@@ -52,3 +52,6 @@ PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
 sim/__pycache__
 sim/results.xml
 sim/sim_build
+
+# simulation waveform
+*.vcd
