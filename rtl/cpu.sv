@@ -2,6 +2,8 @@
 `include "decoder.sv"
 `include "regfile.sv"
 
+`include "svnseg_controller.sv"
+
 module cpu
 (
     input clk,
@@ -56,5 +58,4 @@ module cpu
         .carry_out(carry_in), // TODO: figure out CLC instruction stuff
         .half_carry(half_carry)
     );
-
 endmodule
