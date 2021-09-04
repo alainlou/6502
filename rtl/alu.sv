@@ -1,6 +1,5 @@
 module alu
 (
-    input clk,
     input signed [7:0] reg_a,
     input signed [7:0] reg_b,
     input [4:0] op,
@@ -21,10 +20,31 @@ module alu
                 {carry_out, hold_reg} = reg_a + reg_b;
                 overflow = (hold_reg[7] && !reg_a[7] && !reg_b[7]) || (!hold_reg[7] && reg_a[7] && reg_b[7]);
             end
-            AND: hold_reg = reg_a & reg_b;
-            OR: hold_reg = reg_a | reg_b;
-            EOR: hold_reg = reg_a ^ reg_b;
-            SR: hold_reg = reg_a >> 1;
+            AND: begin
+                hold_reg = reg_a & reg_b;
+                carry_out = 0;
+                overflow = 0;
+            end
+            OR: begin
+                hold_reg = reg_a | reg_b;
+                carry_out = 0;
+                overflow = 0;
+            end
+            EOR: begin
+                hold_reg = reg_a ^ reg_b;
+                carry_out = 0;
+                overflow = 0;
+            end
+            SR: begin
+                hold_reg = reg_a >> 1;
+                carry_out = 0;
+                overflow = 0;
+            end
+            default: begin
+                hold_reg = 8'hFF; // something bad happened
+                carry_out = 0;
+                overflow = 0;
+            end
         endcase
     end
 
