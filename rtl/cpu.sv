@@ -17,6 +17,7 @@ module cpu
     wire [7:0] status_reg;
     regfile regfile_inst
     (
+        .clk(clk),
         .acc_reg(acc_reg),
         .x_reg(x_reg),
         .y_reg(y_reg),
