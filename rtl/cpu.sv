@@ -15,9 +15,17 @@ module cpu
     wire [7:0] acc_reg, x_reg, y_reg;
     wire [15:0] pc;
     wire [7:0] status_reg;
+
+    // Branches/jumps not supported currently
+    wire [15:0] next_pc = pc + 1;
+
     regfile regfile_inst
     (
         .clk(clk),
+        .next_pc(next_pc),
+        .alu_hold_reg(hold_reg),
+        .wr_enable(1'b0),
+        .reg_dest(),
         .acc_reg(acc_reg),
         .x_reg(x_reg),
         .y_reg(y_reg),
