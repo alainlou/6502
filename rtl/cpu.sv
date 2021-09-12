@@ -1,8 +1,10 @@
+`include "types.sv"
+
+import types::*;
+
 `include "alu.sv"
 `include "decoder.sv"
 `include "regfile.sv"
-
-`include "svnseg_controller.sv"
 
 module cpu
 (
@@ -15,6 +17,7 @@ module cpu
     wire [7:0] acc_reg, x_reg, y_reg;
     wire [15:0] pc;
     wire [7:0] status_reg;
+    wire [1:0] reg_dest;
 
     // Branches/jumps not supported currently
     wire [15:0] next_pc = pc + 1;
@@ -25,7 +28,7 @@ module cpu
         .next_pc(next_pc),
         .alu_hold_reg(hold_reg),
         .wr_enable(1'b0),
-        .reg_dest(),
+        .reg_dest(reg_dest),
         .acc_reg(acc_reg),
         .x_reg(x_reg),
         .y_reg(y_reg),
@@ -38,10 +41,12 @@ module cpu
     wire [7:0] imm_val;
     decoder decoder_inst
     (
+        .clk(clk),
         .instr(data),
         .alu_op1_sel(alu_op1_sel),
         .alu_op2_sel(alu_op2_sel),
-        .imm_val(imm_val)
+        .imm_val(imm_val),
+        .reg_dest(reg_dest)
     );
 
     wire signed [7:0] alu_op1, alu_op2;

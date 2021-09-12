@@ -8,7 +8,8 @@ module decoder
     input wire [7:0] instr,
     output reg [1:0] alu_op1_sel,
     output reg [1:0] alu_op2_sel,
-    output reg [7:0] imm_val
+    output reg [7:0] imm_val,
+    output reg [1:0] reg_dest
 );
     enum {ACC, IMM, ZPG, ABS, IND, X_IDX, Y_IDX, REL, ERR} addr_mode;
 
@@ -17,12 +18,12 @@ module decoder
     always_ff @(posedge clk) begin : decoder_output
         case (state)
             S0: begin
-                case (instr)
-                    8'bxxx01001, 8'hA0, 8'hA2, 8'hC0, 8'hE0:
+                casez (instr)
+                    8'b???01001, 8'hA0, 8'hA2, 8'hC0, 8'hE0:
                         addr_mode <= IMM;
                     default: addr_mode <= ERR;
                 endcase
-                // also decode alu op
+                // decode alu op and destination register
             end
             S1:
                 imm_val <= instr;

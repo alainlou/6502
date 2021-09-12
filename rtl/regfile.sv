@@ -1,3 +1,7 @@
+`include "types.sv"
+
+import types::*;
+
 module regfile
 (
     input wire clk,
@@ -15,8 +19,8 @@ module regfile
     always @(posedge clk) begin
         if (wr_enable) begin
             case (reg_dest)
-                2'b01: x_reg <= alu_hold_reg;
-                2'b10: y_reg <= alu_hold_reg;
+                X_REG: x_reg <= alu_hold_reg;
+                Y_REG: y_reg <= alu_hold_reg;
                 default: acc_reg <= alu_hold_reg;
             endcase
         end
