@@ -8,8 +8,8 @@ High level design:
 ---
 
 What I did:
-1. First wrote rtl/alu.sv and sim/test_alu.py kinda naivel
-   - [x] clk, decimal_mode (BCD), carry_in, carry_out, half_carry are not being used in alu.sv
+1. First wrote rtl/alu.sv and sim/test_alu.py kinda naively
+   - clk, decimal_mode (BCD), carry_in, carry_out, half_carry are not being used in alu.sv
 
 What I'm going to do:
 1. Try to run a simple add two numbers program
