@@ -9,7 +9,7 @@ High level design:
 
 What I did:
 1. First wrote rtl/alu.sv and sim/test_alu.py kinda naivel
-   - [ ] clk, decimal_mode (BCD), carry_in, carry_out, half_carry are not being used in alu.sv
+   - [x] clk, decimal_mode (BCD), carry_in, carry_out, half_carry are not being used in alu.sv
 
 What I'm going to do:
 1. Try to run a simple add two numbers program
@@ -32,4 +32,4 @@ software:
 
 resources:
 - [Michael Steil's talk](https://www.youtube.com/watch?v=fWqBmmPQP40)
--
+- https://skilldrick.github.io/easy6502/
